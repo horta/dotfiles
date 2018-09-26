@@ -14,15 +14,13 @@ if type conda ^/dev/null
     conda activate base
 end
 
-if [ $# -eq 0 ]
-then
-    exit 0
-fi
-
-if [[ $1 == --all ]]
-then
-    brew install exa neovim
+if count $argv > /dev/null
+    if [ "$argv[1]" = "--all" ]
+        brew install exa neovim
+    else
+        echo "Wrong argument. Use --all or nothing."
+        exit 1
+    end
 else
-    echo "Wrong argument. Use --all or nothing."
-    exit 1
-fi
+    exit 0
+end
