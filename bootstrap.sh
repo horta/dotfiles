@@ -8,6 +8,8 @@ git config --global push.default current
 git config --global credential.helper 'cache --timeout 3600000'
 
 mkdir -p $HOME/.config/fish/functions
+source ~/anaconda/etc/fish/conf.d/conda.fish
+conda activate base
 
 if [ $# -eq 0 ]
 then
