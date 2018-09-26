@@ -9,7 +9,7 @@ git config --global credential.helper 'cache --timeout 3600000'
 
 mkdir -p $HOME/.config/fish/functions
 
-if test -e ~/anaconda/etc/fish/conf.d/conda.fish
+if not test -e ~/anaconda/etc/fish/conf.d/conda.fish
     source ~/anaconda/etc/fish/conf.d/conda.fish
 end
 
