@@ -5,6 +5,7 @@ git config --global user.name "Danilo Horta"
 config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 $config fetch --all
 git config --global push.default current
+git config --global credential.helper 'cache --timeout 3600000'
 
 mkdir -p $HOME/.config/fish/functions
 
