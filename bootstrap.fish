@@ -2,12 +2,19 @@
 
 git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
+
 set config "/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
+git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
+eval $config config --local status.showUntrackedFiles no
+eval $config checkout
 eval $config fetch --all
+
 git config --global push.default current
 git config --global credential.helper 'cache --timeout 3600000'
 
 mkdir -p $HOME/.config/fish/functions
+mkdir -p $HOME/code
 
 if test -e ~/anaconda/etc/fish/conf.d/conda.fish
     . ~/anaconda/etc/fish/conf.d/conda.fish
