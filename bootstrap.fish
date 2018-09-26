@@ -16,6 +16,11 @@ git config --global credential.helper 'cache --timeout 3600000'
 mkdir -p $HOME/.config/fish/functions
 mkdir -p $HOME/code
 
+cd
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+
 if test -e ~/anaconda/etc/fish/conf.d/conda.fish
     . ~/anaconda/etc/fish/conf.d/conda.fish
 end
