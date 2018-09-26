@@ -3,5 +3,5 @@
 ## bash
 
 ```bash
-alias config '/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'; git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg; config config --local status.showUntrackedFiles no; eval $HOME/bootstrap.sh
+alias config '/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'; git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg; config config --local status.showUntrackedFiles no; config checkout; eval $HOME/bootstrap.sh
 ```
