@@ -3,5 +3,5 @@
 ## fish
 
 ```fish
-. <(curl -fsSL http://raw.githubusercontent.com/horta/dotfiles/master/bootstrap.fish | psub)
+. <(curl -s https://raw.githubusercontent.com/horta/dotfiles/master/bootstrap.fish | psub)
 ```
