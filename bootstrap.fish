@@ -13,7 +13,7 @@ if test -e ~/anaconda/etc/fish/conf.d/conda.fish
     source ~/anaconda/etc/fish/conf.d/conda.fish
 end
 
-if  type conda ^/dev/null
+if  type conda ^/dev/null >/dev/null
     conda activate base
 end
 
