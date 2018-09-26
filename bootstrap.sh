@@ -5,6 +5,18 @@ git config --global user.name "Danilo Horta"
 config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 $config fetch --all
 git config --global push.default current
-#$config branch --set-upstream-to origin/master
 
 mkdir -p $HOME/.config/fish/functions
+
+if [ $# -eq 0 ]
+then
+    exit 0
+fi
+
+if [[ $1 == --all ]]
+then
+    brew install exa neovim
+else
+    echo "Wrong argument. Use --all or nothing."
+    exit 1
+fi
