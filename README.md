@@ -3,5 +3,5 @@
 ## fish
 
 ```fish
-. <(curl -s https://raw.githubusercontent.com/horta/dotfiles/master/bootstrap.fish | psub)
+. <(curl -sL bit.do/horta-bootstrap-fish | psub)
 ```
