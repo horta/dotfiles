@@ -1,4 +1,8 @@
 function v
+    if test -e VERSION
+        cat VERSION
+        return
+    end
     set src "from setuptools import find_packages; print(find_packages()[0])"
     set pkg_name (python -c "$src")
     set re1 "__version__ *= *['\"]\(.*\)['\"]"
