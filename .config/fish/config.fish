@@ -11,4 +11,5 @@ set GOOGLE_APPLICATION_CREDENTIALS /Users/horta/.google-api-pypi-downloads.json
 if test -e /usr/local/anaconda3/etc/fish/conf.d/conda.fish
     source /usr/local/anaconda3/etc/fish/conf.d/conda.fish
     conda activate base
+    conda activate default
 end
