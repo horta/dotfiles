@@ -1,15 +1,23 @@
-set PATH $HOME/.cargo/bin $PATH
-
-set GOPATH $HOME/go
-set PATH $PATH /usr/local/opt/go/libexec/bin
-set PATH $PATH $GOPATH/bin
-
-set PATH $PATH /usr/local/opt/llvm/bin
-
-set GOOGLE_APPLICATION_CREDENTIALS /Users/horta/.google-api-pypi-downloads.json
-
-if test -e /usr/local/anaconda3/etc/fish/conf.d/conda.fish
-    source /usr/local/anaconda3/etc/fish/conf.d/conda.fish
-    conda activate base
-    conda activate default
+for p in $HOME/.cargo/bin /usr/local/opt/go/libexec/bin $GOPATH/bin /usr/local/opt/llvm/bin
+    contains $p
+    or set PATH $p $PATH
 end
+
+set -q GOPATH
+or set -g -x GOPATH $HOME/go
+
+set -q GOOGLE_APPLICATION_CREDENTIALS
+or set -g -x GOOGLE_APPLICATION_CREDENTIALS /Users/horta/.google-api-pypi-downloads.json
+
+# Anaconda
+set conda_path /usr/local/anaconda3/etc/fish/conf.d/conda.fish
+
+if status --is-interactive
+    if test -e $conda_path
+        source $conda_path
+        conda activate default
+    end
+end
+
+set -e conda_path
+

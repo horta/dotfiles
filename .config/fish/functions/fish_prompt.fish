@@ -1,9 +1,12 @@
 function fish_prompt
-    set -l last_status $status
-    if set -q CONDA_LEFT_PROMPT
-        __conda_add_prompt
-    end
-    return_last_status $last_status
+
+    if test -n "$_CONDA_EXE"
+		set -l last_status $status
+		if set -q CONDA_LEFT_PROMPT
+			__conda_add_prompt
+		end
+		return_last_status $last_status
+	end
 
     # __fish_prompt_orig
     set -l color_cwd
@@ -21,7 +24,7 @@ function fish_prompt
             set suffix '>'
     end
     if test -d .git
-        set branch ' ' (git rev-parse --abbrev-ref HEAD)
+        set branch ' ' (git rev-parse --abbrev-ref HEAD ^ /dev/null)
     else
         set branch ''
     end
