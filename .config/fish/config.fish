@@ -1,5 +1,5 @@
-for p in $HOME/.cargo/bin /usr/local/opt/go/libexec/bin $GOPATH/bin /usr/local/opt/llvm/bin
-    contains $p
+for p in $HOME/.cargo/bin /usr/local/opt/go/libexec/bin $GOPATH/bin /usr/local/opt/llvm/bin $HOME/bin
+    contains $p $PATH
     or set PATH $p $PATH
 end
 
