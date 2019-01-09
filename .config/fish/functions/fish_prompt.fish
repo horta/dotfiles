@@ -1,14 +1,4 @@
 function fish_prompt
-
-    if test -n "$_CONDA_EXE"
-		set -l last_status $status
-		if set -q CONDA_LEFT_PROMPT
-			__conda_add_prompt
-		end
-		return_last_status $last_status
-	end
-
-    # __fish_prompt_orig
     set -l color_cwd
     set -l suffix
     switch "$USER"
@@ -29,5 +19,12 @@ function fish_prompt
         set branch ''
     end
 
-    echo -n -s (prompt_hostname) ' ' (set_color $color_cwd) (prompt_pwd) (set_color blue) $branch (set_color normal) "$suffix "
+    set -l prefix
+    if [ (prompt_hostname) = "horta-ml" ]
+        set prefix ""
+    else
+        set prefix (prompt_hostname)
+    end
+
+    echo -n -s $prefix ' ' (set_color $color_cwd) (prompt_pwd) (set_color blue) $branch (set_color normal) "$suffix "
 end
