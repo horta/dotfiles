@@ -23,8 +23,14 @@ function fish_prompt
     if [ (prompt_hostname) = "horta-ml" ]
         set prefix ""
     else
-        set prefix (prompt_hostname)
+        set prefix (prompt_hostname) " "
     end
 
-    echo -n -s $prefix ' ' (set_color $color_cwd) (prompt_pwd) (set_color blue) $branch (set_color normal) "$suffix "
+    set -l tmux_title
+    if string match -q "screen*" $TERM
+        set tmux_title '\033k' (prompt_pwd) '\033\\'
+    else
+        set tmux_title ""
+    end
+    echo -n -s -e $tmux_title $prefix (set_color $color_cwd) (prompt_pwd) (set_color blue) $branch (set_color normal) "$suffix "
 end
