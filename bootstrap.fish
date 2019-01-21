@@ -8,9 +8,9 @@ git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
 
 git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
-eval $config config --local status.showUntrackedFiles no
-eval $config checkout
-eval $config fetch --all
+eval "$config config --local status.showUntrackedFiles no"
+eval "$config checkout"
+eval "$config fetch --all"
 
 git config --global push.default current
 git config --global credential.helper 'cache --timeout 3600000'
