@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 shopt -s expand_aliases
 
+echo "##################################"
+echo "Welcome to Danilo Horta's dotfiles"
+echo "##################################"
+
 echo "Home: $HOME"
 cd $HOME
 
