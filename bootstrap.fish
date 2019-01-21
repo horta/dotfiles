@@ -2,6 +2,8 @@
 
 cd
 
+set config "/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
 git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
 
@@ -38,3 +40,5 @@ if count $argv > /dev/null
 else
     exit 0
 end
+
+unset config
