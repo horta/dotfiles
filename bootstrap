@@ -11,7 +11,7 @@ if test -e $HOME/.cfg
 then
     eval "$config fetch --all"
     eval "$config checkout master"
-    eval "$config fetch reset --hard origin/master"
+    eval "$config reset --hard origin/master"
     eval "$config pull"
 else
     git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
