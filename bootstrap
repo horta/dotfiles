@@ -14,7 +14,11 @@ then
     exit 1
 fi
 
-alias config="/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+function config()
+{
+    /usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+}
+
 git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
 
