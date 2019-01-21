@@ -25,13 +25,13 @@ git config --global user.name "Danilo Horta"
 if test -e $HOME/.cfg
 then
     echo "Dotfiles repo: $HOME/.cfg"
-    config fetch --all >/dev/null
-    config checkout master >/dev/null
-    config reset --hard HEAD >/dev/null
-    config pull >/dev/null
+    config fetch --all -q
+    config checkout master -q
+    config reset --hard HEAD -q
+    config pull -q
 else
     echo "Creating my dotfiles repository."
-    git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg >/dev/null
+    git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg -q
 fi
 config config --local status.showUntrackedFiles no
 config checkout --force >/dev/null
