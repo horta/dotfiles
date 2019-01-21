@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+cd
+
+config="/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
+git config --global user.email "danilo.horta@gmail.com"
+git config --global user.name "Danilo Horta"
+
+if test -e $HOME/.cfg
+then
+    eval "$config pull"
+else
+    git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
+fi
+eval "$config config --local status.showUntrackedFiles no"
+eval "$config checkout --force"
+eval "$config fetch --all"
+
+git config --global push.default current
+git config --global credential.helper 'cache --timeout 3600000'
+
+mkdir -p $HOME/.config/fish/functions || true
+mkdir -p $HOME/code || true
+
+if test -e $HOME/.tmux.git
+    cd $HOME/.tmux && git pull && cd
+else
+    git clone https://github.com/gpakosz/.tmux.git .tmux
+fi
+# ln -s -f .tmux/.tmux.conf
+# cp .tmux/.tmux.conf.local .
+
+if test -e ~/anaconda/etc/fish/conf.d/conda.fish
+then
+    . ~/anaconda/etc/fish/conf.d/conda.fish
+fi
+
+if type conda >/dev/null ^&1
+then
+    conda activate base
+fi
+
+if count $argv > /dev/null
+then
+    if [ "$argv[1]" = "--all" ]
+    then
+        brew install exa neovim
+    else
+        echo "Wrong argument. Use --all or nothing."
+        exit 1
+    fi
+else
+    exit 0
+fi
+
+unset config
