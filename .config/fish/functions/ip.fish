@@ -1,4 +1,4 @@
 function ip
-  ipython $argv
+    ipython $argv
 end
 

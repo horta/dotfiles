@@ -1,4 +1,4 @@
-function l --description 'List contents of directory using long format'
-    ls -lh $argv
+function l
+    ls $argv
 end
 

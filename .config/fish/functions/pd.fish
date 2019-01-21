@@ -1,4 +1,4 @@
 function pd
-  python setup.py develop $argv
+    python setup.py develop $argv
 end
 
