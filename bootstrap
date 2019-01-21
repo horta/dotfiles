@@ -25,7 +25,9 @@ mkdir -p $HOME/code || true
 
 if test -e $HOME/.tmux.git
 then
-    cd $HOME/.tmux && git pull && cd $HOME
+    cd $HOME/.tmux
+    git pull
+    cd $HOME
 else
     git clone https://github.com/gpakosz/.tmux.git .tmux
 fi
