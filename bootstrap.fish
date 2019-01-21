@@ -17,8 +17,8 @@ mkdir -p $HOME/.config/fish/functions
 mkdir -p $HOME/code
 
 git clone https://github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
+# ln -s -f .tmux/.tmux.conf
+# cp .tmux/.tmux.conf.local .
 
 if test -e ~/anaconda/etc/fish/conf.d/conda.fish
     . ~/anaconda/etc/fish/conf.d/conda.fish
