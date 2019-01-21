@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 shopt -s expand_aliases
 
+echo "Home: $HOME"
 cd $HOME
 
 alias config="/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+
+if ! type -q git;
+then
+    echo "Git has not been found."
+    exit 1
+fi
 
 git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
