@@ -23,16 +23,19 @@ git config --global credential.helper 'cache --timeout 3600000'
 mkdir -p $HOME/.config/fish/functions || true
 mkdir -p $HOME/code || true
 
-if test -e $HOME/.tmux.git
+if test -e $HOME/.tmux
 then
-    cd $HOME/.tmux
-    git pull
-    cd $HOME
+    cd $HOME/.tmux && git pull && cd $HOME
 else
     git clone https://github.com/gpakosz/.tmux.git .tmux
 fi
 # ln -s -f .tmux/.tmux.conf
 # cp .tmux/.tmux.conf.local .
+
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+fish -c "fisher self-update"
+fish -c "fisher add edc/bass"
+fish -c "fisher add oh-my-fish/plugin-thefucks"
 
 if test -e ~/anaconda/etc/fish/conf.d/conda.fish
 then
