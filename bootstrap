@@ -19,28 +19,43 @@ function config()
     /usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
 
-git config --global user.email "danilo.horta@gmail.com"
-git config --global user.name "Danilo Horta"
+function config_git()
+{
+    git config --global user.email "danilo.horta@gmail.com"
+    git config --global user.name "Danilo Horta"
+    git config --global push.default current
+    git config --global credential.helper 'cache --timeout 3600000'
+}
+config_git
 
-if test -e $HOME/.cfg
-then
-    echo "Dotfiles repo: $HOME/.cfg"
-    config fetch --all -q
-    config checkout master -q
-    config reset --hard HEAD -q
-    config pull -q
-else
-    echo "Creating my dotfiles repository."
-    git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg -q
-fi
-config config --local status.showUntrackedFiles no
-config checkout --force >/dev/null
+function config_dotfiles_repo()
+{
+    if test -e $HOME/.cfg
+    then
+        echo "Dotfiles repo: $HOME/.cfg"
+        config fetch --all -q
+        config checkout master -q
+        config reset --hard HEAD -q
+        config pull -q
+    else
+        echo "Creating my dotfiles repository."
+        git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg -q
+    fi
+    config config --local status.showUntrackedFiles no
+    config checkout --force -q >/dev/null
+}
+config_dotfiles_repo
 
-git config --global push.default current
-git config --global credential.helper 'cache --timeout 3600000'
+function create_expected_dirs()
+{
+    mkdir -p $HOME/bin || true
+    mkdir -p $HOME/code || true
+}
+create_expected_dirs
 
-mkdir -p $HOME/code || true
-
+echo ""
+echo "Configuring tmux"
+echo "----------------"
 if test -e $HOME/.tmux
 then
     cd $HOME/.tmux && git pull && cd $HOME
