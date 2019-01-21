@@ -4,7 +4,7 @@ shopt -s expand_aliases
 echo "Home: $HOME"
 cd $HOME
 
-if ! type git
+if ! type git >/dev/null
 then
     echo "Git has not been found."
     exit 1
@@ -17,16 +17,16 @@ git config --global user.name "Danilo Horta"
 if test -e $HOME/.cfg
 then
     echo "Dotfiles repo: $HOME/.cfg"
-    config fetch --all
-    config checkout master
-    config reset --hard HEAD
-    config pull
+    config fetch --all >/dev/null
+    config checkout master >/dev/null
+    config reset --hard HEAD >/dev/null
+    config pull >/dev/null
 else
     echo "Creating my dotfiles repository."
-    git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
+    git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg >/dev/null
 fi
 config config --local status.showUntrackedFiles no
-config checkout --force
+config checkout --force >/dev/null
 
 git config --global push.default current
 git config --global credential.helper 'cache --timeout 3600000'
