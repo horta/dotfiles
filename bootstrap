@@ -39,22 +39,9 @@ then
     . ~/anaconda/etc/fish/conf.d/conda.fish
 fi
 
-if type conda >/dev/null ^&1
+if type conda >/dev/null 2>&1
 then
     conda activate base
-fi
-
-if count $argv > /dev/null
-then
-    if [ "$argv[1]" = "--all" ]
-    then
-        brew install exa neovim
-    else
-        echo "Wrong argument. Use --all or nothing."
-        exit 1
-    fi
-else
-    exit 0
 fi
 
 unset config
