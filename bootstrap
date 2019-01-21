@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-shopt -s expand_aliases
 
 echo "##################################"
 echo "Welcome to Danilo Horta's dotfiles"
@@ -11,7 +10,7 @@ cd $HOME
 
 if ! type git >/dev/null
 then
-    echo "Git has not been found."
+    echo "ERROR: Git has not been found!"
     exit 1
 fi
 
@@ -80,8 +79,10 @@ echo ""
 echo "Configuring conda"
 echo "-----------------"
 
-if ! type conda >/dev/null
+if ! type conda >/dev/null 2>&1
 then
-    echo "Conda has not been found."
+    echo "ERROR: Conda has not been found!"
     exit 1
 fi
+
+conda "shell.fish" "hook" > $HOME/bin/conda-init.fish
