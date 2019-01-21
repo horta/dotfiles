@@ -2,23 +2,23 @@
 
 cd $HOME
 
-config="/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias config="/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
 
 if test -e $HOME/.cfg
 then
-    eval "$config fetch --all"
-    eval "$config checkout master"
-    eval "$config reset --hard origin/master"
-    eval "$config pull"
+    config fetch --all
+    config checkout master
+    config reset --hard origin/master --
+    config pull
 else
     git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
 fi
-eval "$config config --local status.showUntrackedFiles no"
-eval "$config checkout --force"
-eval "$config fetch --all"
+config config --local status.showUntrackedFiles no
+config checkout --force
+config fetch --all
 
 git config --global push.default current
 git config --global credential.helper 'cache --timeout 3600000'
