@@ -69,7 +69,6 @@ echo "----------------------"
 mkdir -p $HOME/.config/fish/functions || true
 fish -c "type -q fisher; and fisher self-uninstall"
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-fish -c "fisher ls | fisher rm"
 fish -c "fisher self-update"
-fish -c "fisher add edc/bass"
-fish -c "fisher add jethrokuan/fzf"
+fish -c "fisher add edc/bass -q"
+fish -c "fisher add jethrokuan/fzf -q"
