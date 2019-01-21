@@ -50,5 +50,3 @@ fish -c "fisher add oh-my-fish/plugin-thefucks"
 # then
 #     conda activate base
 # fi
-
-unset config
