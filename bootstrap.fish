@@ -7,7 +7,11 @@ set config "/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
 
-git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
+if test -e $HOME/.cfg
+    eval "$config pull"
+else
+    git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
+end
 eval "$config config --local status.showUntrackedFiles no"
 eval "$config checkout --force"
 eval "$config fetch --all"
