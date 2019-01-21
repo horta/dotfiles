@@ -4,6 +4,7 @@ shopt -s expand_aliases
 echo "##################################"
 echo "Welcome to Danilo Horta's dotfiles"
 echo "##################################"
+echo ""
 
 echo "Home: $HOME"
 cd $HOME
@@ -73,3 +74,14 @@ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fi
 fish -c "fisher self-update" >/dev/null
 fish -c "fisher add edc/bass" >/dev/null
 fish -c "fisher add jethrokuan/fzf" >/dev/null
+
+
+echo ""
+echo "Configuring conda"
+echo "-----------------"
+
+if ! type conda >/dev/null
+then
+    echo "Conda has not been found."
+    exit 1
+fi
