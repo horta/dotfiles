@@ -9,6 +9,9 @@ git config --global user.name "Danilo Horta"
 
 if test -e $HOME/.cfg
 then
+    eval "$config fetch --all"
+    eval "$config checkout master"
+    eval "$config fetch reset --hard origin/master"
     eval "$config pull"
 else
     git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
@@ -33,18 +36,19 @@ fi
 # cp .tmux/.tmux.conf.local .
 
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+fish -c "fisher ls | fisher rm"
 fish -c "fisher self-update"
 fish -c "fisher add edc/bass"
 fish -c "fisher add oh-my-fish/plugin-thefucks"
 
-if test -e ~/anaconda/etc/fish/conf.d/conda.fish
-then
-    . ~/anaconda/etc/fish/conf.d/conda.fish
-fi
+# if test -e ~/anaconda/etc/fish/conf.d/conda.fish
+# then
+#     . ~/anaconda/etc/fish/conf.d/conda.fish
+# fi
 
-if type conda >/dev/null 2>&1
-then
-    conda activate base
-fi
+# if type conda >/dev/null 2>&1
+# then
+#     conda activate base
+# fi
 
 unset config
