@@ -33,15 +33,16 @@ then
 else
     git clone https://github.com/gpakosz/.tmux.git .tmux
 fi
-# ln -s -f .tmux/.tmux.conf
-# cp .tmux/.tmux.conf.local .
 
 fish -c "type -q fisher; and fisher self-uninstall"
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fish -c "fisher ls | fisher rm"
 fish -c "fisher self-update"
 fish -c "fisher add edc/bass"
-fish -c "fisher add oh-my-fish/plugin-thefuck"
+if type -q thefuck
+then
+    fish -c "fisher add oh-my-fish/plugin-thefuck"
+fi
 
 # if test -e ~/anaconda/etc/fish/conf.d/conda.fish
 # then
