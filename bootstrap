@@ -4,7 +4,7 @@ shopt -s expand_aliases
 echo "Home: $HOME"
 cd $HOME
 
-if ! type -q git
+if [ ! type -q git ]
 then
     echo "Git has not been found."
     exit 1
