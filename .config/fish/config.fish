@@ -22,3 +22,5 @@ and set -q YODA
     source /nfs/software/stegle/system/Anaconda3-2018.12-Linux-x86_64/etc/fish/conf.d/conda.fish
     conda activate
 end
+
+set -gx SHELL fish
