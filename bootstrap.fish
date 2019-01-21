@@ -1,9 +1,9 @@
 #!/usr/bin/env fish
 
+cd
+
 git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
-
-set config "/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
 eval $config config --local status.showUntrackedFiles no
@@ -16,7 +16,6 @@ git config --global credential.helper 'cache --timeout 3600000'
 mkdir -p $HOME/.config/fish/functions
 mkdir -p $HOME/code
 
-cd
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
@@ -25,7 +24,7 @@ if test -e ~/anaconda/etc/fish/conf.d/conda.fish
     . ~/anaconda/etc/fish/conf.d/conda.fish
 end
 
-if  type conda > /dev/null ^&1
+if type conda >/dev/null ^&1
     conda activate base
 end
 
