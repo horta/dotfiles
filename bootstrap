@@ -40,17 +40,3 @@ fish -c "fisher ls | fisher rm"
 fish -c "fisher self-update"
 fish -c "fisher add edc/bass"
 fish -c "fisher add jethrokuan/fzf"
-if type -q thefuck
-then
-    fish -c "fisher add oh-my-fish/plugin-thefuck"
-fi
-
-# if test -e ~/anaconda/etc/fish/conf.d/conda.fish
-# then
-#     . ~/anaconda/etc/fish/conf.d/conda.fish
-# fi
-
-# if type conda >/dev/null 2>&1
-# then
-#     conda activate base
-# fi
