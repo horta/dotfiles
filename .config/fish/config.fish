@@ -16,7 +16,7 @@ and not set -q CONDA_EXE
 end
 
 if status is-interactive
-and set -q YODA
+and [ $CLUSTER_NAME = "YODA" ]
     set -gx CONDA_ENVS_PATH /nfs/software/stegle/users/horta/conda-envs
     #source /usr/local/anaconda3/etc/fish/conf.d/conda.fish
     source /nfs/software/stegle/system/Anaconda3-2018.12-Linux-x86_64/etc/fish/conf.d/conda.fish
