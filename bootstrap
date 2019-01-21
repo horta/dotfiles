@@ -50,6 +50,7 @@ function create_expected_dirs()
 {
     mkdir -p $HOME/bin || true
     mkdir -p $HOME/code || true
+    mkdir -p $HOME/.config || true
 }
 create_expected_dirs
 
@@ -67,8 +68,8 @@ echo ""
 echo "Configuring fish shell"
 echo "----------------------"
 mkdir -p $HOME/.config/fish/functions || true
-fish -c "type -q fisher; and fisher self-uninstall"
-curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-fish -c "fisher self-update"
-fish -c "fisher add edc/bass -q"
-fish -c "fisher add jethrokuan/fzf -q"
+fish -c "type -q fisher; and fisher self-uninstall" >/dev/null
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish -q
+fish -c "fisher self-update" >/dev/null
+fish -c "fisher add edc/bass" >/dev/null
+fish -c "fisher add jethrokuan/fzf" >/dev/null
