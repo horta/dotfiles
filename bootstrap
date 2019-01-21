@@ -4,34 +4,33 @@ shopt -s expand_aliases
 echo "Home: $HOME"
 cd $HOME
 
-alias config="/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-
-if ! type -q git;
+if ! type -q git
 then
     echo "Git has not been found."
     exit 1
 fi
 
+alias config="/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 git config --global user.email "danilo.horta@gmail.com"
 git config --global user.name "Danilo Horta"
 
 if test -e $HOME/.cfg
 then
+    echo "Dotfiles repo: $HOME/.cfg"
     config fetch --all
     config checkout master
     config reset --hard HEAD
     config pull
 else
+    echo "Creating my dotfiles repository."
     git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
 fi
 config config --local status.showUntrackedFiles no
 config checkout --force
-config fetch --all
 
 git config --global push.default current
 git config --global credential.helper 'cache --timeout 3600000'
 
-mkdir -p $HOME/.config/fish/functions || true
 mkdir -p $HOME/code || true
 
 if test -e $HOME/.tmux
@@ -41,6 +40,9 @@ else
     git clone https://github.com/gpakosz/.tmux.git .tmux
 fi
 
+echo "Configuring fish shell"
+echo "----------------------"
+mkdir -p $HOME/.config/fish/functions || true
 fish -c "type -q fisher; and fisher self-uninstall"
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 fish -c "fisher ls | fisher rm"
