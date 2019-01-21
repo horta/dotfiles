@@ -40,6 +40,7 @@ else
     git clone https://github.com/gpakosz/.tmux.git .tmux
 fi
 
+echo ""
 echo "Configuring fish shell"
 echo "----------------------"
 mkdir -p $HOME/.config/fish/functions || true
