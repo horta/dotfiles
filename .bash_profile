@@ -8,16 +8,15 @@ function config()
 
 function vim()
 {
-    _vim=$(which vim)
-    if ! $?;
+    if ! _vim=$(which vim);
     then
         return 1
     fi
-    _nvim=$(which nvim)
-    if $?;
+    
+    if _nvim=$(which nvim);
     then
-        _nvim $@
+        $_nvim "$@"
     else
-        _vim $@
+        $_vim "$@"
     fi
 }
