@@ -1,5 +1,5 @@
 export PATH=$HOME/bin:/usr/local/sbin:$PATH
-. /usr/local/anaconda3/etc/profile.d/conda.sh
+# . /usr/local/anaconda3/etc/profile.d/conda.sh  # commented out by conda initialize
 
 function config()
 {
@@ -23,4 +23,4 @@ function vim()
 }
 export -f vim
 
-launchctl setenv PATH $PATH
+. $HOME/conda-bash-init.sh
