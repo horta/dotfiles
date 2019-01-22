@@ -28,12 +28,6 @@ function create_expected_dirs()
 }
 create_expected_dirs
 
-echo "Creating $HOME/bin/conda-init.fish"
-conda shell.fish hook > $HOME/bin/conda-fish-init.fish
-
-echo "Creating $HOME/bin/conda-bash-init.sh"
-conda shell.bash hook > $HOME/bin/conda-bash-init.sh
-
 function config()
 {
     /usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
@@ -61,6 +55,12 @@ function config_dotfiles_repo()
     config checkout --force -q >/dev/null
 }
 config_dotfiles_repo
+
+echo "Creating $HOME/bin/conda-init.fish"
+conda shell.fish hook > $HOME/bin/conda-fish-init.fish
+
+echo "Creating $HOME/bin/conda-bash-init.sh"
+conda shell.bash hook > $HOME/bin/conda-bash-init.sh
 
 echo ""
 echo "Configuring tmux"
