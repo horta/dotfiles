@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:/usr/local/sbin:$PATH
 . /usr/local/anaconda3/etc/profile.d/conda.sh
 
 function config()
