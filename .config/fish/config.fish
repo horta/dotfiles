@@ -1,12 +1,15 @@
-#set -l PATH_BAK $PATH[-1..1]
-#for p in $PATH_BAK
-#   if string match -q -r "naconda.*" $p
-#       if set -l index (contains -i $p $PATH)
-#           set -e PATH[$index]
-#       end
-#       set PATH $p $PATH
-#   end
-#end
+set -gx SHELL (which fish)
+
+. $HOME/bin/conda-fish-init.fish
+set -l PATH_BAK $PATH[-1..1]
+for p in $PATH_BAK
+   if string match -q -r "naconda.*" $p
+       if set -l index (contains -i $p $PATH)
+           set -e PATH[$index]
+       end
+       set PATH $p $PATH
+   end
+end
 
 #if status is-interactive
 #and set -q TMUX
@@ -24,4 +27,3 @@
 #    conda activate
 #end
 
-set -gx SHELL fish
