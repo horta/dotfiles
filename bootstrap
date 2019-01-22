@@ -14,19 +14,35 @@ then
     exit 1
 fi
 
+if ! type conda >/dev/null 2>&1
+then
+    echo "ERROR: Conda has not been found!"
+    exit 1
+fi
+
+function create_expected_dirs()
+{
+    mkdir -p $HOME/bin || true
+    mkdir -p $HOME/code || true
+    mkdir -p $HOME/.config || true
+}
+create_expected_dirs
+
+echo "Creating $HOME/bin/conda-init.fish"
+conda shell.fish hook > $HOME/bin/conda-fish-init.fish
+
+echo "Creating $HOME/bin/conda-bash-init.sh"
+conda shell.bash hook > $HOME/bin/conda-bash-init.sh
+
 function config()
 {
     /usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
 
-function config_git()
-{
-    git config --global user.email "danilo.horta@gmail.com"
-    git config --global user.name "Danilo Horta"
-    git config --global push.default current
-    git config --global credential.helper 'cache --timeout 3600000'
-}
-config_git
+git config --global user.email "danilo.horta@gmail.com"
+git config --global user.name "Danilo Horta"
+git config --global push.default current
+git config --global credential.helper 'cache --timeout 3600000'
 
 function config_dotfiles_repo()
 {
@@ -45,14 +61,6 @@ function config_dotfiles_repo()
     config checkout --force -q >/dev/null
 }
 config_dotfiles_repo
-
-function create_expected_dirs()
-{
-    mkdir -p $HOME/bin || true
-    mkdir -p $HOME/code || true
-    mkdir -p $HOME/.config || true
-}
-create_expected_dirs
 
 echo ""
 echo "Configuring tmux"
@@ -76,20 +84,8 @@ fish -c "fisher add jethrokuan/fzf" >/dev/null
 
 
 echo ""
-echo "Configuring conda"
-echo "-----------------"
-
-if ! type conda >/dev/null 2>&1
-then
-    echo "ERROR: Conda has not been found!"
-    exit 1
-fi
-
-echo "Creating $HOME/bin/conda-init.fish"
-conda shell.fish hook > $HOME/bin/conda-fish-init.fish
-
-echo "Creating $HOME/bin/conda-bash-init.sh"
-conda shell.bash hook > $HOME/bin/conda-bash-init.sh
+echo "Configuring nvim"
+echo "----------------"
 
 type pip >/dev/null 2>&1  && pip install --user --upgrade pynvim
 type pip2 >/dev/null 2>&1 && pip2 install --user --upgrade pynvim
