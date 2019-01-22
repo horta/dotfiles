@@ -91,6 +91,7 @@ conda shell.fish hook > $HOME/bin/conda-fish-init.fish
 echo "Creating $HOME/bin/conda-bash-init.sh"
 conda shell.bash hook > $HOME/bin/conda-bash-init.sh
 
+[ type pip >/dev/null 2>&1 ] && pip install --user --upgrade pynvim
 [ type pip2 >/dev/null 2>&1 ] && pip2 install --user --upgrade pynvim
 [ type pip3 >/dev/null 2>&1 ] && pip3 install --user --upgrade pynvim
 
