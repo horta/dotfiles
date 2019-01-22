@@ -1,0 +1,6 @@
+channels:
+  - conda-canary
+  - r
+  - defaults
+ssl_verify: true
+changeps1: true
