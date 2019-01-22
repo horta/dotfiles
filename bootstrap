@@ -93,3 +93,10 @@ conda shell.bash hook > $HOME/bin/conda-bash-init.sh
 
 [ type pip2 >/dev/null 2>&1 ] && pip2 install --user --upgrade pynvim
 [ type pip3 >/dev/null 2>&1 ] && pip3 install --user --upgrade pynvim
+
+if type nvim >/dev/null 2>&1;
+then
+    nvim +PlugClean! +qall
+    nvim +PlugUpgrade +qall
+    nvim +PlugUpdate +qall
+fi
