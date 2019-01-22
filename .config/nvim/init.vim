@@ -64,7 +64,6 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
-set termguicolors
 set number
 set cursorline
 set scrolloff=7
