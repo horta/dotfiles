@@ -43,16 +43,16 @@ function config_dotfiles_repo()
     if test -e $HOME/.cfg
     then
         echo "Dotfiles repo: $HOME/.cfg"
-        config fetch --all -q
-        config checkout master -q
-        config reset --hard HEAD -q
-        config pull -q
+        config fetch --all
+        config checkout master
+        config reset --hard HEAD
+        config pull
     else
         echo "Creating my dotfiles repository."
-        git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg -q
+        git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
     fi
     config config --local status.showUntrackedFiles no
-    config checkout --force -q >/dev/null
+    config checkout --force
 }
 config_dotfiles_repo
 
