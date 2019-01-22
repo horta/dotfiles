@@ -99,4 +99,5 @@ then
     nvim +PlugClean! +qall
     nvim +PlugUpgrade +qall
     nvim +PlugUpdate +qall
+    nvim +UpdateRemotePlugins +qall
 fi
