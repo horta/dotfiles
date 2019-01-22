@@ -23,4 +23,4 @@ function vim()
 }
 export -f vim
 
-. $HOME/conda-bash-init.sh
+. $HOME/bin/conda-bash-init.sh
