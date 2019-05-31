@@ -1,4 +1,4 @@
 function pt
-  python setup.py test $argv --addopts "--ff"
+  python setup.py test --addopts "--ff $argv"
 end
 

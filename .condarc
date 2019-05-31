@@ -1,5 +1,4 @@
 channels:
-  - conda-canary
   - r
   - defaults
 ssl_verify: true
