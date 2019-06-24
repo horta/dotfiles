@@ -20,13 +20,8 @@ set foldnestmax=1
 set nofoldenable
 
 " Ignoring files
-set wildignore+=*.pyc,*.o,*.obj,*/.git/*,*/__pycache__/*,*.npy,*.npz
+set wildignore+=*.pyc,*.o,*.obj,*/.git/*,*/__pycache__/*,*.npy,*.npz,*/.ccls-cache/*
 set wildignore+=*/tmp/*,*.swp,*.zip,*.pdf
-
-" Different syntax highligther
-augroup pandoc_syntax
-  au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-augroup END
 
 " Formatting
 au BufRead,BufNewFile *.rst setlocal textwidth=88
@@ -52,3 +47,10 @@ set clipboard+=unnamedplus
 
 " Default fzf layout
 let g:fzf_layout = { 'down': '~20%' }
+
+" always show signcolumns
+set signcolumn=yes
+
+let g:nvimgdb_disable_start_keymaps = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'

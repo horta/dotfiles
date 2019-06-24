@@ -1,20 +1,20 @@
 colorscheme gruvbox
 set background=dark
 set noshowmode
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \   'active': {
-      \     'left': [ [ 'mode', 'paste' ],
-      \               [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-      \             ]
-      \   },
-      \   'component_function': {
-      \     'gitbranch': 'fugitive#head'
-      \   },
-      \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'wombat',
+"       \   'active': {
+"       \     'left': [ [ 'mode', 'paste' ],
+"       \               [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+"       \             ]
+"       \   },
+"       \   'component_function': {
+"       \     'gitbranch': 'fugitive#head'
+"       \   },
+"       \ }
 set number
 set cursorline
-set scrolloff=7
+set scrolloff=5
 set inccommand=nosplit
 set splitright
 set splitbelow
