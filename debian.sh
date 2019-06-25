@@ -15,7 +15,9 @@ then
     exit 1
 fi
 
-if ! apt-get install -q -y fish curl vim
+pkgs="fish curl vim ruby python3 neovim lua-nvim python3-neovim ruby-neovim"
+
+if ! eval apt-get install -q -y $pkgs
 then
     err "<apt-get install> failed."
     exit 1

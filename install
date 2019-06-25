@@ -115,7 +115,6 @@ do
 done
 
 fish -c "type -q fisher; and fisher self-uninstall" >/dev/null
-exit 0
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish -q
 fish -c "fisher self-update" >/dev/null
 fish -c "fisher add edc/bass" >/dev/null
