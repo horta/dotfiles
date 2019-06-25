@@ -1,12 +1,26 @@
 #!/usr/bin/env bash
 
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 echo "##################################"
 echo "Welcome to Danilo Horta's dotfiles"
 echo "##################################"
 echo ""
 
-echo "Home: $HOME"
-cd $HOME
+source $BASEDIR/msg
+echo "Base system"
+echo "==========="
+echo ""
+
+source /etc/os-release
+case $ID_LIKE in
+    debian)
+        "${BASEDIR}/debian.sh"
+        ;;
+    *)
+        echo "unknown distro ID_LIKE: $ID_LIKE, not doing anything special"
+        ;;
+esac
 
 if ! type git >/dev/null
 then
@@ -14,87 +28,114 @@ then
     exit 1
 fi
 
-if ! type conda >/dev/null 2>&1
-then
-    echo "ERROR: Conda has not been found!"
-    exit 1
-fi
+test -d $HOME/bin || mkdir -p $HOME/bin
+test -d $HOME/code || mkdir -p $HOME/code
+test -d $HOME/.config || mkdir -p $HOME/.config
+test -d $HOME/.config/nvim || mkdir -p $HOME/.config/nvim
 
-function create_expected_dirs()
-{
-    mkdir -p $HOME/bin || true
-    mkdir -p $HOME/code || true
-    mkdir -p $HOME/.config || true
-}
-create_expected_dirs
-
-function config()
-{
-    /usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME "$@"
-}
-
-git config --global user.email "danilo.horta@gmail.com"
+git config --global user.email "danilo.horta@pm.me"
 git config --global user.name "Danilo Horta"
 git config --global push.default current
 git config --global credential.helper 'cache --timeout 3600000'
 
-function config_dotfiles_repo()
+function make_link()
 {
-    if test -e $HOME/.cfg
+    if ! test -e "$1"
     then
-        echo "Dotfiles repo: $HOME/.cfg"
-        config fetch --all
-        config checkout master
-        config reset --hard HEAD
-        config pull
-    else
-        echo "Creating my dotfiles repository."
-        git clone --bare https://github.com/horta/dotfiles.git $HOME/.cfg
+        err "File $1 does not exist."
+        exit 0
     fi
-    config config --local status.showUntrackedFiles no
-    config checkout --force
+    if test -e "$2" && ! test -L "$2"
+    then
+        err "File $2 exist and is a regular file."
+	exit 1
+    fi
+    if test -L "$2"
+    then
+        warn "File $2 is a symbolic link. Removing it."
+	rm "$2"
+    fi
+    info "Linking $2 -> $1."
+    ln -s "$1" "$2"
 }
-config_dotfiles_repo
 
-echo "Creating $HOME/bin/conda-init.fish"
-conda shell.fish hook > $HOME/bin/conda-fish-init.fish
+make_link $BASEDIR/bash_profile ~/.bash_profile || exit 1
+make_link $BASEDIR/condarc ~/.condarc || exit 1
+make_link $BASEDIR/profile ~/.profile || exit 1
+make_link $BASEDIR/tmux.conf ~/.tmux.conf || exit 1
 
-echo "Creating $HOME/bin/conda-bash-init.sh"
-conda shell.bash hook > $HOME/bin/conda-bash-init.sh
+make_link $BASEDIR/.config/alacritty ~/.config/alacritty || exit 1
+make_link $BASEDIR/.config/fish/config.fish ~/.config/fish/config.fish || exit 1
+make_link $BASEDIR/.config/nvim/init.vim ~/.config/nvim/init.vim || exit 1
+
+if type conda >/dev/null 2>&1
+then
+    info "Creating $HOME/bin/conda-init.fish."
+    conda shell.fish hook > $HOME/bin/conda-fish-init.fish
+
+    info "Creating $HOME/bin/conda-bash-init.sh."
+    conda shell.bash hook > $HOME/bin/conda-bash-init.sh
+else
+    warn "<conda> command not found."
+fi
 
 echo ""
 echo "Configuring tmux"
-echo "----------------"
-if test -e $HOME/.tmux
-then
-    cd $HOME/.tmux && git pull && cd $HOME
+echo "================"
+echo ""
+
+if test -e $HOME/.tmux/plugins/tpm; then
+    (cd $HOME/.tmux/plugins/tpm && git pull)
 else
-    git clone https://github.com/gpakosz/.tmux.git .tmux
+    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 fi
 
 echo ""
 echo "Configuring fish shell"
-echo "----------------------"
-mkdir -p $HOME/.config/fish/functions || true
+echo "======================"
+echo ""
+
+if ! type fish >/dev/null 2>&1
+then
+    err "<fish> command not found."
+    exit 1
+fi
+
+if ! type curl >/dev/null 2>&1
+then
+    err "<curl> command not found."
+    exit 1
+fi
+
+home_funcs=$HOME/.config/fish/functions
+test -d $home_funcs || mkdir -p $home_funcs
+for f in $(ls $BASEDIR/.config/fish/functions/)
+do
+    make_link $BASEDIR/.config/fish/functions/$f $home_funcs/$f || exit 1
+done
+
 fish -c "type -q fisher; and fisher self-uninstall" >/dev/null
+exit 0
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish -q
 fish -c "fisher self-update" >/dev/null
 fish -c "fisher add edc/bass" >/dev/null
 fish -c "fisher add jethrokuan/fzf" >/dev/null
 
-
 echo ""
 echo "Configuring nvim"
-echo "----------------"
+echo "================"
+echo ""
 
 type pip >/dev/null 2>&1  && pip install --user --upgrade pynvim
 type pip2 >/dev/null 2>&1 && pip2 install --user --upgrade pynvim
 type pip3 >/dev/null 2>&1 && pip3 install --user --upgrade pynvim
 
-if type nvim >/dev/null 2>&1;
+if type nvim >/dev/null 2>&1
 then
     nvim +PlugClean! +qall
     nvim +PlugUpgrade +qall
     nvim +PlugUpdate +qall
     nvim +UpdateRemotePlugins +qall
+else
+    warn "<nvim> command not found."
 fi
