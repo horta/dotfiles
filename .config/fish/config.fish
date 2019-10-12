@@ -2,7 +2,7 @@ not set -q SHELL;and set -gx SHELL (which fish)
 
 not set -q XDG_CONFIG_HOME;set -gx XDG_CONFIG_HOME $HOME/.config
 
-. $HOME/bin/conda-fish-init.fish
+test -e $HOME/bin/conda-fish-init.fish; and . $HOME/bin/conda-fish-init.fish
 
 # Move conda path to the front, if present.
 set -l PATH_BAK $PATH[-1..1]
