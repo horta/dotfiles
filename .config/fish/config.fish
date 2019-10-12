@@ -41,3 +41,13 @@ and [ $CLUSTER_NAME = "YODA" ]
     source /nfs/software/stegle/system/Anaconda3-2018.12-Linux-x86_64/etc/fish/conf.d/conda.fish
     conda activate
 end
+
+
+if not test -e /usr/include
+   echo "WARNING: The folder /usr/include does not exist."
+   echo "I think you should run"
+   echo "  sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /"
+   echo "to fix it."
+   echo "Explanation can be found at <https://apple.stackexchange.com/a/337945>."
+   echo ""
+end
