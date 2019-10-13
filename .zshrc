@@ -18,7 +18,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 command -v nvim > /dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
 
-[[ -v EDITOR ]] && alias v="$EDITOR"
+[[ -v EDITOR ]] && alias vim="$EDITOR"
 alias e="exit"
 command -v exa > /dev/null 2>&1 && alias ls="exa"
 
