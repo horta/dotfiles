@@ -1,0 +1,85 @@
+build/
+
+.ccls
+compile_commands.json
+.ipynb_checkpoints/
+.pytest_cache/
+
+*.sublime-project
+*.sublime-workspace
+
+.ropeproject/
+.mypy_cache/
+.vscode/
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Resilio sync
+.sync/
+
+# Icons
+Icon?
+
+
+# Python
+__pycache__/
+
+.atom-beautify*
+
+*.vim
+.undodir/
+.sync/
+.DS_Store
+*.pyc
+*.pyprof
+*.o
+*.so
+__pycache__/
+*.egg-info/
+.eggs/
+nohup.out
+*.hdf5
+codeship.aes
+codeship.env
+*so.dSYM/
+save-commands.json
+npm-debug.log
+plink.log
+.bash_history
+.cache/

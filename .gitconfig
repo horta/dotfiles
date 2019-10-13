@@ -1,0 +1,15 @@
+[credential]
+	helper = cache --timeout 3600000
+[user]
+	email = danilo.horta@pm.me
+	name = Danilo Horta
+	signingKey = 2AD5FB4B60774BA38A1C99C9E1656080B054CFC1
+[tag]
+	sort = version:refname
+[push]
+	default = current
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
