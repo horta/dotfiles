@@ -11,9 +11,9 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light sindresorhus/pure
 
-export PATH=/Users/horta/bin:$PATH
+export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH=/Users/horta/.gem/ruby/2.6.0/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
 export XDG_CONFIG_HOME=$HOME/.config
 
 command -v nvim > /dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
