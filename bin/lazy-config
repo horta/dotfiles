@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-config add -u && config commit -m "update" && config push
