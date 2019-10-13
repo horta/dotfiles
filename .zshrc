@@ -20,6 +20,7 @@ command -v nvim > /dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
 
 [[ -v EDITOR ]] && alias vim="$EDITOR"
 alias e="exit"
+alias g="git"
 command -v exa > /dev/null 2>&1 && alias ls="exa"
 
 # emacs line editing mode
@@ -39,4 +40,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
