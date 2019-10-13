@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+nvim +PlugUpgrade +PlugUpdate +PlugClean ++UpdateRemotePlugins +CocUpdate +CocRebuild

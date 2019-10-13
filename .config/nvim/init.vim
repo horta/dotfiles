@@ -5,7 +5,7 @@ Plug 'justinmk/vim-dirvish'
 Plug 'bfredl/nvim-miniyank'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'thaerkh/vim-workspace'
+" Plug 'thaerkh/vim-workspace'
 Plug 'dag/vim-fish'
 Plug 'kana/vim-altr'
 Plug 'drmikehenry/vim-headerguard'
@@ -88,7 +88,7 @@ set smartcase
 
 set nospell
 
-let g:python3_host_prog = "/anaconda3/bin/python3"
+let g:python3_host_prog = "/Users/horta/anaconda3/bin/python3"
 
 " Disable Ex mode
 nnoremap Q <Nop>
@@ -136,7 +136,7 @@ nnoremap <silent> <leader>p :CocList files<cr>
 nnoremap <silent> <leader>f :CocList grep<cr>
 
 " Workspace
-nnoremap <leader>w :ToggleWorkspace<cr>
+" nnoremap <leader>w :ToggleWorkspace<cr>
 
 " Buffer switching
 nnoremap <silent> <c-n> :bnext<cr>
@@ -265,12 +265,12 @@ set splitbelow
 " }}}
 
 " Workspace {{{
-let g:workspace_session_directory = $HOME . '/.nvim/sessions/'
-let g:workspace_undodir = $HOME . '/.nvim/sessions/undo/'
-let g:workspace_autocreate = 1
-let g:workspace_session_disable_on_args = 1
-let g:workspace_autosave = 0
-let g:workspace_autosave_ignore = ['gitcommit', 'dirvish']
+" let g:workspace_session_directory = $HOME . '/.nvim/sessions/'
+" let g:workspace_undodir = $HOME . '/.nvim/sessions/undo/'
+" let g:workspace_autocreate = 1
+" let g:workspace_session_disable_on_args = 1
+" let g:workspace_autosave = 0
+" let g:workspace_autosave_ignore = ['gitcommit', 'dirvish']
 " }}}
 
 " Trim whitespaces {{{
