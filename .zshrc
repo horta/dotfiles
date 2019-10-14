@@ -4,39 +4,39 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 ### End of Zplugin installer's chunk
 
+zplugin ice wait'0' atload'_zsh_autosuggest_start' lucid
 zplugin light zsh-users/zsh-autosuggestions
+
+# Syntax Highlighting (should always be at the end)
+zplugin ice wait"0" atinit"zpcompinit; zpcdreplay" lucid
 zplugin light zdharma/fast-syntax-highlighting
+
+zplugin ice wait"1" \
+    atload"bindkey '^[[A' history-substring-search-up" \
+    atload"bindkey '^[[B' history-substring-search-down" lucid
+zplugin light zsh-users/zsh-history-substring-search
+
+zplugin ice wait'!0' lucid reset-prompt
+zplugin snippet $HOME/.zconda
 
 # Load the pure theme, with zsh-async library that's bundled with it.
 zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light sindresorhus/pure
 
+export HISTSIZE=100000
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
 export XDG_CONFIG_HOME=$HOME/.config
+export ZSH_AUTOSUGGEST_USE_ASYNC=1
 
 command -v nvim > /dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
 
 [[ -v EDITOR ]] && alias vim="$EDITOR"
 alias e="exit"
 alias g="git"
+alias s="git status"
 command -v exa > /dev/null 2>&1 && alias ls="exa"
 
 # emacs line editing mode
 bindkey -e
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/horta/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/horta/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/horta/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/horta/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
