@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+while true; do
+    echo "1: alacritty"
+    echo "2: bash"
+    echo "3: fish"
+    echo "4: neovim"
+    echo "5: tmux"
+    read -p "Which program do you want to config? " answer
+    case $answer in
+        [1]* ) $EDITOR ~/.config/alacritty/alacritty.yml; break;;
+        [2]* ) $EDITOR ~/.bash_profile; break;;
+        [3]* ) $EDITOR ~/.config/fish/config.fish; break;;
+        [4]* ) $EDITOR ~/.config/nvim/init.vim; break;;
+        [5]* ) $EDITOR ~/.tmux.conf; break;;
+        [qe]* ) exit;;
+        * ) echo "Please select a number or q/e to exit.";;
+    esac
+done
