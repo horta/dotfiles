@@ -250,8 +250,6 @@ let g:nvimgdb_config_override = {
 " }}}
 
 " Theme {{{
-highlight link ErrorMsg GruvboxRed
-
 colorscheme gruvbox
 set background=dark
 set noshowmode
