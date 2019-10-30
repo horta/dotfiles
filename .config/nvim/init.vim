@@ -27,6 +27,7 @@ Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'cespare/vim-toml'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
+Plug 'arakashic/chromatica.nvim'
 call plug#end()
 " }}}
 
@@ -152,14 +153,14 @@ noremap <silent> <c-l> :wincmd l<cr>
 
 exe 'source' '~/.config/nvim/lib/buffers.vim'
 " Delete current buffer
-nnoremap <silent> <leader>c :Bdelete<cr>
+nnoremap <silent> <leader>c :Bwipeout<cr>
 " Delete all hidden buffers
-nnoremap <silent> <leader>C :call DeleteHiddenBuffers()<cr>
+nnoremap <silent> <leader>C :call WipeoutHiddenBuffers()<cr>
 
 " Modifies commands from tpope/vim-eunuch
 " to use Bdelete command from moll/vim-bbye.
-command! -bar -bang Remove Unlink<bang> | Bdelete
-command! -bar -bang Delete Unlink<bang> | Bdelete
+command! -bar -bang Remove Unlink<bang> | Bwipeout
+command! -bar -bang Delete Unlink<bang> | Bwipeout
 
 " Switch header/source files
 command! A call altr#forward()
@@ -175,13 +176,19 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 " }}}
 
-" Python tester {{{
+" Python {{{
 let test#python#runner = 'pytest'
 nmap <silent> <leader>tn :TestNearest<cr>
 nmap <silent> <leader>tf :TestFile<cr>
 nmap <silent> <leader>ts :TestSuite<cr>
 nmap <silent> <leader>tl :TestLast<cr>
 nmap <silent> <leader>tg :TestVisit<cr>
+
+augroup filetype_python
+    autocmd FileType python nnoremap <silent> <leader>bp Obreakpoint()<esc>:w<esc>
+augroup END
+
+let g:semshi#always_update_all_highlights = v:true
 " }}}
 
 " Latex specific {{{
@@ -235,18 +242,37 @@ nmap <silent> gr <Plug>(coc-references)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 nmap <silent> <F5> :Format<cr>
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+nmap <silent> <F6> :OR<cr>
 " }}}
 
-" C/C++ debugging {{{
+" C/C++ {{{
 let g:nvimgdb_disable_start_keymaps = 1
 
 let g:nvimgdb_config_override = {
   \ 'key_frameup':    '<Nop>',
   \ 'key_framedown':  '<Nop>',
   \ }
+
+" let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
+let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib'
+" let g:chromatica#enable_at_startup=1
+let g:chromatica#responsive_mode=1
+
+augroup filetype_c
+    autocmd!
+    autocmd FileType c setlocal foldmethod=syntax foldnestmax=1
+      \ foldenable foldlevel=99
+augroup END
 " }}}
 
 " Theme {{{
@@ -314,12 +340,6 @@ augroup filetype_vim
         \ autocmd! filetype_vim BufWritePost <buffer> call TrimWhitespace()
 augroup END
 
-augroup filetype_c
-    autocmd!
-    autocmd FileType c setlocal foldmethod=syntax foldnestmax=1
-      \ foldenable foldlevel=99
-augroup END
-
 augroup filetype_rust
     autocmd!
     autocmd FileType rust setlocal foldmethod=syntax foldnestmax=1
@@ -370,6 +390,3 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 
 " Default fzf layout
 let g:fzf_layout = { 'down': '~20%' }
-
-" Python breakpoint
-nnoremap <silent> <leader>bp Obreakpoint()<esc>:w<esc>
