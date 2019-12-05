@@ -40,16 +40,22 @@
     "python.formatting.provider": "black",
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Path": "/Users/horta/anaconda3/bin/flake8",
-    "python.linting.banditEnabled": true,
+    "python.linting.banditEnabled": false,
     "python.linting.banditPath": "/Users/horta/anaconda3/bin/bandit",
     "python.linting.mypyEnabled": true,
     "python.linting.mypyPath": "/Users/horta/anaconda3/bin/mypy",
     "python.sortImports.path": "/Users/horta/anaconda3/bin/isort",
+    "python.autoUpdateLanguageServer": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "css",
         "Markdown",
         "json",
         "python",
         "rust"
-    ]
+    ],
+    "yaml.format.enable": true,
+    "latex.forwardSearch.executable": "/Applications/Skim.app/Contents/SharedSupport/displayline",
+    "latex.forwardSearch.args": ["-revert", "-background", "%l", "%p", "%f"],
+    "latex.build.onSave": true,
+    "coc.source.dictionary.filetypes": ["tex"]
 }

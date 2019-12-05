@@ -26,8 +26,9 @@ Plug 'simeji/winresizer'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 Plug 'cespare/vim-toml'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 Plug 'arakashic/chromatica.nvim'
+Plug 'tell-k/vim-autoflake'
 call plug#end()
 " }}}
 
@@ -39,6 +40,7 @@ let g:did_install_default_menus = 1
 let g:loaded_netrwPlugin = 0
 nmap gx <Plug>NetrwBrowseX
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<CR>
+nmap <F1> <nop>
 
 let mapleader="\<space>"
 
@@ -89,10 +91,21 @@ set smartcase
 
 set nospell
 
+let g:loaded_python2_provider = 0
 let g:python3_host_prog = "/Users/horta/anaconda3/bin/python3"
 
 " Disable Ex mode
 nnoremap Q <Nop>
+
+" Do not insert two spaces after a '.', '?' and '!' with a join command.
+" Prevent gq formatting to add extra spaces.
+set nojoinspaces
+
+if has('unix')
+  set dictionary+=/usr/share/dict/words
+else
+  set dictionary+=~/AppData/Local/nvim/words
+endif
 " }}}
 
 " Window resize {{{
@@ -186,23 +199,27 @@ nmap <silent> <leader>tg :TestVisit<cr>
 
 augroup filetype_python
     autocmd FileType python nnoremap <silent> <leader>bp Obreakpoint()<esc>:w<esc>
+    autocmd FileType python nnoremap <silent><buffer> <F7> :call Autoflake()<cr>
 augroup END
 
 let g:semshi#always_update_all_highlights = v:true
+let g:autoflake_disable_show_diff=1
+let g:autoflake_remove_unused_variables=0
+let g:autoflake_remove_all_unused_imports=1
 " }}}
 
 " Latex specific {{{
-let g:tex_flavor  = 'latex'
-let g:tex_conceal = ''
-let g:vimtex_fold_manual = 1
-let g:vimtex_latexmk_continuous = 1
-let g:vimtex_compiler_progname = 'nvr'
-let g:vimtex_view_method = 'skim'
-let g:vimtex_format_enabled = 1
+" let g:tex_flavor  = 'latex'
+" let g:tex_conceal = ''
+" let g:vimtex_fold_manual = 1
+" let g:vimtex_latexmk_continuous = 1
+" let g:vimtex_compiler_progname = 'nvr'
+" let g:vimtex_view_method = 'skim'
+" let g:vimtex_format_enabled = 1
 " let g:vimtex_indent_enabled = 0
-" let g:vimtex_indent_delims = 0
-" let g:vimtex_indent_ignored_envs = 1
-" let g:vimtex_indent_lists = 1
+" " let g:vimtex_indent_delims = 0
+" " let g:vimtex_indent_ignored_envs = 1
+" " let g:vimtex_indent_lists = 1
 " let g:vimtex_indent_on_ampersands = 0
 
 augroup filetype_tex
@@ -215,8 +232,11 @@ augroup filetype_tex
   set shiftwidth=2
   set shiftround
   set textwidth=100
-  nmap <silent> <leader>v :VimtexView<cr>
-  autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
+  " nmap <silent> <leader>v :VimtexView<cr>
+  " command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+  " nmap <silent> <F6> :OR<cr>
+  nmap <silent> <leader>v :call CocAction('runCommand', 'latex.ForwardSearch')<cr>
+  " autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
 augroup END
 " }}}
 
@@ -263,13 +283,15 @@ let g:nvimgdb_config_override = {
   \ 'key_framedown':  '<Nop>',
   \ }
 
-" let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
-let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib'
-" let g:chromatica#enable_at_startup=1
+let g:chromatica#libclang_path='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:chromatica#responsive_mode=1
+" let g:chromatica#enable_at_startup=1
+" let g:chromatica#enable_log=1
+" let g:chromatica#search_source_args=1
 
 augroup filetype_c
     autocmd!
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
     autocmd FileType c setlocal foldmethod=syntax foldnestmax=1
       \ foldenable foldlevel=99
 augroup END
