@@ -27,8 +27,15 @@ export HISTSIZE=100000
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 export XDG_CONFIG_HOME=$HOME/.config
 export ZSH_AUTOSUGGEST_USE_ASYNC=1
+
+# Save every command before it is executed.
+setopt inc_append_history
+
+# Read the history file everytime history is called.
+setopt share_history
 
 command -v nvim > /dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
 
