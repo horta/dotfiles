@@ -19,6 +19,11 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls-cache"
+                },
+                "clang": {
+                    "extraArgs": [
+                        "-isystem/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"
+                    ]
                 }
             }
         }
@@ -43,7 +48,15 @@
     ],
     "yaml.format.enable": true,
     "latex.forwardSearch.executable": "/Applications/Skim.app/Contents/SharedSupport/displayline",
-    "latex.forwardSearch.args": ["-revert", "-background", "%l", "%p", "%f"],
+    "latex.forwardSearch.args": [
+        "-revert",
+        "-background",
+        "%l",
+        "%p",
+        "%f"
+    ],
     "latex.build.onSave": true,
-    "coc.source.dictionary.filetypes": ["tex"]
+    "coc.source.dictionary.filetypes": [
+        "tex"
+    ]
 }

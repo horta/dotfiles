@@ -5,6 +5,7 @@ Plug 'justinmk/vim-dirvish'
 Plug 'bfredl/nvim-miniyank'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'enricobacis/vim-airline-clock'
 " Plug 'thaerkh/vim-workspace'
 Plug 'dag/vim-fish'
 Plug 'kana/vim-altr'
@@ -67,7 +68,9 @@ set wildignore+=*.pyc,*.o,*.obj,*/.git/*,*/__pycache__/*,*.npy,*.npz,*/.ccls-cac
 set wildignore+=*/.git/*,*.swp,*.zip,*.pdf
 
 " Keep the cursor at the same place when using *
-nnoremap * *``
+" nnoremap * *``
+nnoremap * :let @/ = '\<'.expand('<cword>').'\>'\|set hlsearch<C-M>
+nnoremap g* :let @/ = expand('<cword>')\|set hlsearch<C-M>
 
 " Do not wrap lines
 set nowrap
@@ -186,6 +189,7 @@ let g:VM_maps['Find Subword Under'] = '<C-t>' " replace visual C-n
 " Airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 " }}}
 

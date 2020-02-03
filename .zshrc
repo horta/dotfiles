@@ -24,6 +24,7 @@ zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light sindresorhus/pure
 
 export HISTSIZE=100000
+export SAVEHIST=$HISTSIZE
 export PATH=$HOME/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
@@ -36,6 +37,12 @@ setopt inc_append_history
 
 # Read the history file everytime history is called.
 setopt share_history
+
+# Remove superfluous blanks before recording entry.
+setopt hist_reduce_blanks
+
+# Don't record an entry that was just recorded again.
+setopt hist_ignore_dups
 
 command -v nvim > /dev/null 2>&1 && export EDITOR=nvim || export EDITOR=vim
 
