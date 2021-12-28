@@ -1,7 +1,18 @@
+- defaults:
+    brewfile:
+      stdout: false
+      stderr: false
+      include: ['tap', 'brew', 'cask']
+
+- brewfile:
+  file: Brewfile
+
 - clean: ["~"]
+
 - link: {
   "~/.dotfiles": "",
   "~/.vimrc": "vimrc"
 }
+
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

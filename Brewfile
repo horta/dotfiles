@@ -1,0 +1,23 @@
+brew "black", restart_service: true
+brew "brotli"
+brew "fish"
+brew "git"
+brew "htop
+brew "jpeg"
+brew "libpng"
+brew "libtiff"
+brew "lua"
+brew "numpy"
+brew "numpy", link: false
+brew "readline"
+brew "ruby"
+brew "rust"
+brew "scipy"
+brew "sqlite"
+brew "tldr"
+brew "tmate"
+cask "kitty"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
