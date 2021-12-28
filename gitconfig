@@ -1,0 +1,35 @@
+[core]
+    excludesfile = ~/.gitignore_global
+    autocrlf = input
+[user]
+    name = Danilo Horta
+    email = danilo.horta@pm.me
+[tag]
+    sort = version:refname
+[push]
+    default = current
+[alias]
+    p = push
+    s = status
+    c = commit
+    a = add
+[pull]
+    rebase = true
+    ff = only
+[init]
+    defaultBranch = main
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+[merge]
+    tool = fugitive
+[mergetool]
+    keepBackup = false
+[mergetool "fugitive"]
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[include]
+    path = ~/.gitconfig_local
