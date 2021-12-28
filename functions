@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo_err() { echo "🔥 $@" 1>&2; }                                                                                               
+                                                                                                                               
+add_path()
+{                                                                                                            
+    if [ -d $1 ] || [ -L $1 ]                                                                                                  
+    then                                                                                                                       
+        export PATH=$1:$PATH                                                                                                   
+    else                                                                                                                       
+        echo_err "Directory $1 does not exist." >&2                                                                             
+    fi                                                                                                                         
+}    

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Fish shell
+curr_shell=$(ps -p $PPID | tail -n 1 | sed 's/   */:/g' | cut -d' ' -f4)                                                       
+if [[ "$curr_shell" != "fish" && -z ${BASH_EXECUTION_STRING} ]]                                                                
+then                                                                                                                           
+    exec fish                                                                                                                  
+fi

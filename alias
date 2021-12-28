@@ -1,0 +1,15 @@
+#!/bin/bash
+
+alias b="git branch -a"
+alias e="exit"
+alias g="git"
+alias icat="kitty +kitten icat"
+alias t="tree -C | less -R"
+alias s="git status"
+alias vim="$EDITOR"
+alias v="$EDITOR"
+alias ver="version"
+alias ..="cd .."
+alias vw="vim-which"
+alias ci="gh run list"
+alias lg="lazygit"

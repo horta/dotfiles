@@ -4,15 +4,31 @@
 
 - clean: ["~"]
 
+- create:
+    - ~/bin
+    - ~/.config
+    - ~/.config/fish
+    - ~/opt
+    - ~/opt/go
+
 - link:
-    ~/.vimrc: vimrc
+    ~/.alias: alias
+    ~/.bash_profile: bash_profile
+    ~/.bashrc: bashrc
+    ~/.exec_fish: exec_fish
+    ~/.functions: functions
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
+    ~/.ripgreprc: ripgreprc
+    ~/.vimrc: vimrc
+    ~/.config_shell: config_shell
+    ~/.zshrc: zshrc
+    ~/.config/fish/config.fish: config/fish/config.fish
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
 
 - brewfile:
     file: Brewfile
-    stdout: true
-    stderr: true
+    stdout: false
+    stderr: false
