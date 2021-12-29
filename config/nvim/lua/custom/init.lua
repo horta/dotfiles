@@ -35,6 +35,7 @@ hooks.add("install_plugins", function(use)
    -- use { "mhartington/formatter.nvim" }
    -- use { "folke/which-key.nvim" }
    use { "kdheepak/lazygit.nvim", event = "BufRead" }
+   use { "blankname/vim-fish", event = "BufRead" }
 end)
 
 -- NOTE: we heavily suggest using Packer's lazy loading (with the 'event' field)

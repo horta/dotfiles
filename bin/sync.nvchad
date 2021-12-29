@@ -2,7 +2,6 @@
 
 if [ ! -d ~/.config/nvim/lua ]
 then
-    git clone https://github.com/NvChad/NvChad ~/.config/nvim
+  git clone https://github.com/NvChad/NvChad ~/.config/nvim
 fi
-
 nvim --headless -c 'autocmd User PackerComplete quitall' +'hi NormalFloat guibg=#1e222a' +PackerSync
