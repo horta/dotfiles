@@ -8,25 +8,34 @@
     - ~/bin
     - ~/.config
     - ~/.config/fish
+    - ~/.config/fish/functions
+    - ~/.config/nvim
+    - ~/.config/nvim/lua/custom
     - ~/opt
     - ~/opt/go
+    - ~/opt/cargo
 
 - link:
     ~/.alias: alias
     ~/.bash_profile: bash_profile
     ~/.bashrc: bashrc
+    ~/.config/fish/config.fish: config/fish/config.fish
+    ~/.config/fish/functions/fish_prompt.fish: config/fish/functions/fish_prompt.fish
+    ~/.config/nvim/lua/custom/init.lua: config/nvim/lua/custom/init.lua
+    ~/.config_shell: config_shell
     ~/.exec_fish: exec_fish
     ~/.functions: functions
     ~/.gitconfig: gitconfig
     ~/.gitignore_global: gitignore_global
     ~/.ripgreprc: ripgreprc
     ~/.vimrc: vimrc
-    ~/.config_shell: config_shell
     ~/.zshrc: zshrc
-    ~/.config/fish/config.fish: config/fish/config.fish
+    ~/bin/sync.nvchad: bin/sync.nvchad
+    ~/bin/sync.nvlsp: bin/sync.nvlsp
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - ~/bin/sync.nvchad
 
 - brewfile:
     file: Brewfile

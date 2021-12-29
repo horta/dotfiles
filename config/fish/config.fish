@@ -12,4 +12,4 @@ if status is-interactive
     mcfly init fish | source                                                                                                   
 end                                                                                                                            
                                                                                                                                
-bind \t accept-autosuggestion   
+#bind \t accept-autosuggestion   
