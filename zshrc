@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-source $HOME/.config_shell
+source $HOME/.shell.config

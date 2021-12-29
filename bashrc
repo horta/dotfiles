@@ -6,4 +6,4 @@ HISTSIZE=10000
 HISTFILESIZE=200000
 shopt -s histappend
 
-source $HOME/.config_shell
+source $HOME/.shell.config
