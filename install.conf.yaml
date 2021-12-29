@@ -21,8 +21,10 @@
     ~/.bashrc: bashrc
     ~/.config/fish/config.fish: config/fish/config.fish
     ~/.config/fish/functions/fish_prompt.fish: config/fish/functions/fish_prompt.fish
-    ~/.config/nvim/lua/custom/init.lua: config/nvim/lua/custom/init.lua
+    ~/.config/kitty/current-theme.conf: config/kitty/current-theme.conf
+    ~/.config/kitty/kitty.conf: config/kitty/kitty.conf
     ~/.config/nvim/lua/custom/chadrc.lua: config/nvim/lua/custom/chadrc.lua
+    ~/.config/nvim/lua/custom/init.lua: config/nvim/lua/custom/init.lua
     ~/.config_shell: config_shell
     ~/.exec_fish: exec_fish
     ~/.functions: functions
