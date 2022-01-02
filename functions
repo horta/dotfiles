@@ -11,3 +11,17 @@ add_path()
         echo_err "Directory $1 does not exist." >&2                                                                             
     fi                                                                                                                         
 }    
+
+# ------Use fzf as a file opener:
+	fo() {
+		file="$(fdfind -t f -H | fzf --reverse --preview="head -$LINES {}" --bind="space:toggle-preview" --preview-window=wrap:hidden)"
+		if [ -n "$file" ]; then
+			mimetype="$(xdg-mime query filetype $file)"
+			default="$(xdg-mime query default $mimetype)"
+		    		if [[ "$default" == "nvim.desktop" ]]; then
+		        		nvim "$file"
+		    		else
+		        		&>/dev/null xdg-open "$file" & disown; exit
+		    		fi
+		fi
+	}
