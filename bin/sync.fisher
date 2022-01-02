@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if type -q fisher; then
+    curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+fi
+
+fisher install edc/bass
+fisher update

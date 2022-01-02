@@ -1,6 +1,9 @@
 brew "black", restart_service: true
 brew "brotli"
 brew "cython"
+brew "lighttpd"
+brew "bat"
+brew "fd"
 brew "fish"
 brew "git"
 brew "htop"

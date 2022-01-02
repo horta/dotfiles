@@ -1,0 +1,16 @@
+#!/bin/bash
+
+FILE="$(fd -t f -H | fzf --reverse --preview="head -$LINES {}" --bind="space:toggle-preview" --preview-window=wrap:hidden)"
+
+if [ -n "$FILE" ]; then
+    MIME=$(file $FILE --mime-type | head -n1 | sed 's%: % %' | awk '{print $2}')
+    echo $MIME
+    if [[ "$MIME" == "text/"* ]]; then
+        vim "$FILE"
+    else
+        open "$FILE" &
+        disown
+        exit
+    fi
+fi
+

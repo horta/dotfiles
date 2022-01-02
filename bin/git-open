@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Use git-sh-setup, similar to git-rebase
+# https://www.kernel.org/pub/software/scm/git/docs/git-sh-setup.html
+# https://github.com/git/git/blob/master/git-rebase.sh
+# shellcheck disable=SC2034
+OPTIONS_STUCKLONG=t
+# shellcheck disable=SC2034
+OPTIONS_KEEPDASHDASH=
+# shellcheck disable=SC2034
+OPTIONS_SPEC="\
+git open [options]
+git open [remote] [branch]
+--
+  Opens the GitHub page for a repo/branch in your browser.
+  https://github.com/paulirish/git-open/
+  Available options are
+c,commit!     open current commit
+i,issue!      open issues page
+s,suffix=     append this suffix
+p,print!      just print the url
+"
+
+# https://github.com/koalaman/shellcheck/wiki/SC1090
+# shellcheck source=/dev/null
+SUBDIRECTORY_OK='Yes' . "$(git --exec-path)/git-sh-setup"
+
+echo  "ola"

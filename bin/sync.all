@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sync.fisher
+sync.nvchad
+sync.nvlsp
+sync.os
