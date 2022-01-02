@@ -7,7 +7,16 @@ local M = {}
 -- example of changing theme:
 
 M.ui = {
-   theme = "gruvchad",
+  theme = "gruvchad",
 }
+
+M.mappings.plugins = {
+  bufferline = {
+     next_buffer = "<c-n>",
+     prev_buffer = "<c-p>",
+  },
+}
+
+-- map("n", "<c-n>", "m.next_buffer")
 
 return M
