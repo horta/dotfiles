@@ -6,17 +6,27 @@ local M = {}
 -- make sure you maintain the structure of `core/default_config.lua` here,
 -- example of changing theme:
 
-M.ui = {
-  theme = "gruvchad",
+M.options = {}
+
+M.plugins = {
+   status = { nvimtree = false },
 }
+
+M.mappings = {}
 
 M.mappings.plugins = {
-  bufferline = {
-     next_buffer = "<c-n>",
-     prev_buffer = "<c-p>",
-  },
+   nvimtree = {
+      toggle = {},
+      focus = {},
+   },
+   bufferline = {
+      next_buffer = "<c-n>",
+      prev_buffer = "<c-p>",
+   },
 }
 
--- map("n", "<c-n>", "m.next_buffer")
+M.ui = {
+   theme = "gruvchad",
+}
 
 return M
