@@ -27,10 +27,10 @@
     ~/.config/kitty/current-theme.conf: config/kitty/current-theme.conf
     ~/.config/fish/config.fish: config/fish/config.fish
     ~/.config/fish/functions/fish_prompt.fish: config/fish/functions/fish_prompt.fish
+    ~/.config/git/config: config/git/config
     ~/.config/git/ignore: config/git/ignore
     ~/.exec_fish: exec_fish
     ~/.functions: functions
-    ~/.gitconfig: gitconfig
     ~/.ripgreprc: ripgreprc
     ~/.shell.config: shell.config
     ~/.vimrc: vimrc
