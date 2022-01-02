@@ -2,7 +2,7 @@ if status is-interactive
                                                                                                                                
     source ~/.alias
 
-    if [ "$OS" = "Darwin" ]
+    #if [ "$OS" = "Darwin" ]
     #     source ~/.alias_macos                                                                                                  
     # end
     # 

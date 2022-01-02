@@ -48,6 +48,18 @@ hooks.add("install_plugins", function(use)
    -- use { "folke/which-key.nvim" }
    use { "kdheepak/lazygit.nvim", event = "BufRead" }
    use { "blankname/vim-fish", event = "BufRead" }
+   use { "jose-elias-alvarez/null-ls.nvim", event = "BufRead",
+       config = function()
+require("null-ls").setup({
+    sources = {
+        require("null-ls").builtins.formatting.stylua,
+        require("null-ls").builtins.formatting.shfmt,
+    },
+})
+
+
+      end,
+}
 end)
 
 vim.cmd [[autocmd BufNewFile,BufRead *.h setlocal filetype=c]]
