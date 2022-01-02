@@ -1,5 +1,5 @@
 #!/bin/bash
 
-nvim --headless -c \
-  'LspInstall --sync tsserver sumneko_lua clangd cmake pyright html cssls bashls' \
-  +'hi NormalFloat guibg=#1e222a' -c q
+# nvim --headless -c \
+#   'LspInstall --sync tsserver sumneko_lua clangd cmake pyright html cssls bashls' \
+#   +'hi NormalFloat guibg=#1e222a' -c q
