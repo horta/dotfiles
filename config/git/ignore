@@ -1,6 +1,7 @@
+**
+!code/
+!code/**
 .DS_Store
-build/
+.git/
 .cache/
-compile_commands.json
-Session.vim
-Brewfile.lock.json
+buid/

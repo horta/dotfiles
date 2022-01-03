@@ -4,9 +4,8 @@ FILE="$(fd -t f -H | fzf --reverse --preview="head -$LINES {}" --bind="space:tog
 
 if [ -n "$FILE" ]; then
     MIME=$(file $FILE --mime-type | head -n1 | sed 's%: % %' | awk '{print $2}')
-    echo $MIME
     if [[ "$MIME" == "text/"* ]]; then
-        vim "$FILE"
+        nvim "$FILE"
     else
         open "$FILE" &
         disown
