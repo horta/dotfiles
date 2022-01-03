@@ -22,17 +22,19 @@
     ~/.alias: alias
     ~/.bash_profile: bash_profile
     ~/.bashrc: bashrc
-    ~/.config/nvim/lua/custom/init.lua: config/nvim/lua/custom/init.lua
-    ~/.config/nvim/lua/custom/chadrc.lua: config/nvim/lua/custom/chadrc.lua
-    ~/.config/kitty/kitty.conf: config/kitty/kitty.conf
-    ~/.config/kitty/current-theme.conf: config/kitty/current-theme.conf
+    ~/.config/fd/ignore: config/git/ignore
     ~/.config/fish/config.fish: config/fish/config.fish
     ~/.config/fish/functions/fish_prompt.fish: config/fish/functions/fish_prompt.fish
     ~/.config/git/config: config/git/config
     ~/.config/git/ignore: config/git/ignore
-    ~/.config/fd/ignore: config/git/ignore
+    ~/.config/kitty/current-theme.conf: config/kitty/current-theme.conf
+    ~/.config/kitty/kitty.conf: config/kitty/kitty.conf
+    ~/.config/nvim/lua/custom/chadrc.lua: config/nvim/lua/custom/chadrc.lua
+    ~/.config/nvim/lua/custom/init.lua: config/nvim/lua/custom/init.lua
     ~/.exec_fish: exec_fish
+    ~/.fdignore: gitignore
     ~/.functions: functions
+    ~/.gitignore: gitignore
     ~/.ripgreprc: ripgreprc
     ~/.shell.config: shell.config
     ~/.vimrc: vimrc

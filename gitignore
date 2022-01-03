@@ -1,3 +1,9 @@
+**
+!/code/
+!/code/*
+!/code/**
+!/code/**/*
+
 # Danilo Horta
 .git/
 buid/
