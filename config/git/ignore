@@ -32,11 +32,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Generic Android ignores
-bin/
-target
-gen/
-
 # Compiled source
 *.com
 *.class

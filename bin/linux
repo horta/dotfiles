@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+if cmd=$(~/bin/linux.py);
+then
+    exec $cmd
+fi
