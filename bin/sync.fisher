@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env fish
 
-if type -q fisher; then
+if ! type -q fisher;
     curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-fi
+end
 
 fisher install edc/bass
 fisher update
