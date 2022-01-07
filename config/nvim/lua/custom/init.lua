@@ -22,6 +22,13 @@ hooks.add("setup_mappings", function(map)
     map("n", "<leader>gg", ":LazyGit<CR>")
     map("n", "<leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 
+    vim.cmd [[ let g:kitty_navigator_no_mappings = 1 ]]
+
+    map("n", "<c-h>", ":KittyNavigateLeft<cr>")
+    map("n", "<c-j>", ":KittyNavigateDown<cr>")
+    map("n", "<c-k>", ":KittyNavigateUp<cr>")
+    map("n", "<c-l>", ":KittyNavigateRight<cr>")
+
     -- vim.cmd("unmap <c-n>")
     -- vim.cmd("unmap <c-p>")
 
@@ -63,6 +70,7 @@ hooks.add("install_plugins", function(use)
             }
         end,
     }
+    use "knubie/vim-kitty-navigator"
 end)
 
 vim.cmd [[autocmd BufNewFile,BufRead *.h setlocal filetype=c]]

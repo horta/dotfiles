@@ -1,6 +1,10 @@
 local M = {}
 
-M.options = {}
+M.options = {
+    nvChad = {
+        window_nav = false,
+    },
+}
 
 M.ui = {
     theme = "gruvchad",
