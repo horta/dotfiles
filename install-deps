@@ -16,7 +16,6 @@ if ! type git >/dev/null 2>&1; then
     $INSTALL git
 fi
 
-# if ! type python3 >/dev/null 2>&1; then
-#     $INSTALL python3-pip
-#     $INSTALL git
-# fi
+if ! type python3 >/dev/null 2>&1; then
+    $INSTALL python3-pip
+fi
