@@ -10,23 +10,34 @@ image = questionary.select(
         'ubuntu',
     ], default='ubuntu').ask()
 
-tag = questionary.select(
-    "Tag",
-    choices=[
-        '16.04 LTS (Xenial)',
-        '18.04 LTS (Bionic)',
-        '18.10 (Cosmic)',
-        '19.04 (Disco)',
-        '19.10 (Eoan)',
-        '20.04 LTS (Focal)',
-        '20.10 (Groovy)',
-        '21.04 (Hirsute)',
-        '21.10 (Impish)',
-        '22.04 LTS (Jammy)',
-        'latest',
-        'rolling',
-    ], default='21.10 (Impish)').ask()
-tag = tag.split()[0]
+tag = ""
+if image == "ubuntu":
+    tag = questionary.select(
+        "Tag",
+        choices=[
+            '16.04 LTS (Xenial)',
+            '18.04 LTS (Bionic)',
+            '18.10 (Cosmic)',
+            '19.04 (Disco)',
+            '19.10 (Eoan)',
+            '20.04 LTS (Focal)',
+            '20.10 (Groovy)',
+            '21.04 (Hirsute)',
+            '21.10 (Impish)',
+            '22.04 LTS (Jammy)',
+            'latest',
+            'rolling',
+        ], default='21.10 (Impish)').ask()
+    tag = tag.split()[0]
+elif image == "debian":
+    tag = questionary.select(
+        "Tag",
+        choices=[
+            'Stable',
+            'Testing',
+            'Unstable',
+        ], default='Testing').ask()
+    tag = tag.lower()
 
 platform = questionary.select(
     "Platform",

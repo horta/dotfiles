@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if type sudo >/dev/null 2>&1; then SUDO="sudo"; else SUDO=""; fi
+
+if type apt >/dev/null 2>&1;
+then
+  INSTALL="$SUDO apt -y install"
+  $SUDO apt update
+  $SUDO apt -y install tzdata
+  ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
+  dpkg-reconfigure --frontend noninteractive tzdata
+fi
+
+if ! type python3 >/dev/null 2>&1;
+then
+  $INSTALL python3-pip
+fi

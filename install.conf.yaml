@@ -48,6 +48,7 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - ./install-deps
     - fish bin/sync.fisher
 
 - brewfile:
