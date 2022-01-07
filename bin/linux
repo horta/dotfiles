@@ -1,7 +1,16 @@
 #!/bin/bash
 
-
-if cmd=$(~/bin/linux.py);
-then
-    exec $cmd
+if cmd=$(~/bin/linux.py); then
+    cid=$(exec $cmd)
+    DOCKER="docker exec -e DEBIAN_FRONTEND=noninteractive $cid"
+    APT="/usr/bin/apt-get -yqq"
+    $DOCKER $APT update
+    $DOCKER $APT upgrade
+    $DOCKER $APT install tzdata
+    $DOCKER ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
+    $DOCKER dpkg-reconfigure --frontend noninteractive tzdata
+    $DOCKER $APT install git curl
+    docker exec -it $cid /bin/bash
+    docker stop $cid >/dev/null 2>&1 &
+    disown
 fi

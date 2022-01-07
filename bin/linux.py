@@ -50,14 +50,14 @@ platform = questionary.select(
 mount_dir = questionary.text(
     "Mount directory", "").ask()
 
-mount_arg = ""
+mount_arg = " "
 if mount_dir != "":
     path = Path(mount_dir).resolve()
-    mount_arg = f" -v {path.absolute()}:/{path.name} -w /{path.name}"
+    mount_arg = f"-v {path.absolute()}:/{path.name} -w /{path.name} "
 
 
 print(f"""
-docker run --cap-add=SYS_PTRACE --security-opt seccomp=unconfined\
-{mount_arg}\
- --platform {platform} -it {image}:{tag} /bin/bash
-""", end="")
+docker run --cap-add=SYS_PTRACE --security-opt \
+seccomp=unconfined {mount_arg}\
+--platform {platform} -it --rm --detach \
+{image}:{tag}""", end="")
