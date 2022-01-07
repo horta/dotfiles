@@ -1,3 +1,5 @@
 #!/bin/bash
 
-curl -sL https://raw.githubusercontent.com/horta/dotfiles/master/install-deps | source
+URL=https://raw.githubusercontent.com/horta/dotfiles/main
+
+/bin/bash -c "$(curl -fsSL $URL/install-deps)"
