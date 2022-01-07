@@ -7,6 +7,7 @@
 - create:
     - ~/bin
     - ~/.config
+    - ~/.config/kitty
     - ~/.config/fish
     - ~/.config/fish/functions
     - ~/.config/git
@@ -21,7 +22,9 @@
 - link:
     ~/.alias: alias
     ~/.bash_profile: bash_profile
-    ~/.bashrc: bashrc
+    ~/.bashrc:
+      path: bashrc
+      force: true
     ~/.config/fd/ignore: config/git/ignore
     ~/.config/fish/config.fish: config/fish/config.fish
     ~/.config/fish/functions/fish_prompt.fish: config/fish/functions/fish_prompt.fish

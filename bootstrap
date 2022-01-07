@@ -9,3 +9,5 @@ git clone https://github.com/horta/dotfiles.git --depth 1
 cd dotfiles
 
 ./install
+
+source ~/.bashrc
