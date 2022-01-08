@@ -4,6 +4,9 @@ M.options = {
     nvChad = {
         window_nav = false,
     },
+    expandtab = true,
+    shiftwidth = 4,
+    tabstop = 4,
 }
 
 M.ui = {

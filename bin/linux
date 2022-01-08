@@ -1,16 +1,22 @@
 #!/bin/bash
 
 if cmd=$(~/bin/linux.py); then
-    cid=$(exec $cmd)
-    DOCKER="docker exec -e DEBIAN_FRONTEND=noninteractive $cid"
-    APT="/usr/bin/apt-get -yqq"
-    $DOCKER $APT update
-    $DOCKER $APT upgrade
-    $DOCKER $APT install tzdata
-    $DOCKER ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
-    $DOCKER dpkg-reconfigure --frontend noninteractive tzdata
-    $DOCKER $APT install git curl
-    docker exec -it $cid /bin/bash
-    docker stop $cid >/dev/null 2>&1 &
+    CID=$(exec $cmd)
+
+    TZ=Europe/London
+    ENV="-e TZ=$TZ -e DEBIAN_FRONTEND=noninteractive -e DEBCONF_TERSE=yes"
+    APT="apt-get -y -q --no-install-recommends"
+
+    docker exec $ENV $CID $APT update
+    docker exec $ENV $CID $APT install tzdata
+    docker exec $ENV $CID ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+    docker exec $ENV $CID dpkg-reconfigure --frontend noninteractive tzdata
+
+    docker exec $ENV $CID $APT upgrade
+    docker exec $ENV $CID $APT install apt-utils
+    docker exec $ENV $CID $APT install ca-certificates
+    docker exec $ENV $CID $APT install curl
+    docker exec $ENV -it $CID /bin/bash
+    docker stop $CID >/dev/null 2>&1 &
     disown
 fi
