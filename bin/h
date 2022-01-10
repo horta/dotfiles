@@ -1,0 +1,3 @@
+#!/bin/bash
+
+howdoi $* -c -n 5

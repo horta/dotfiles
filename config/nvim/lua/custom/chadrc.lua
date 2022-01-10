@@ -15,18 +15,46 @@ M.ui = {
 
 M.plugins = {
     status = { nvimtree = false, blankline = false },
+    options = {
+        lspconfig = {
+            setup_lspconf = "custom.plugins.lspconfig",
+        },
+    },
 }
 
-M.mappings = {}
+M.mappings = {
+    terminal = {
+        esc_termmode = { "<esc>" },
+    },
+}
 
 M.mappings.plugins = {
-    nvimtree = {
-        toggle = {},
-        focus = {},
-    },
     bufferline = {
         next_buffer = "<c-n>",
         prev_buffer = "<c-p>",
+    },
+    lspconfig = {
+        declaration = "gD",
+        definition = "gd",
+        hover = "K",
+        implementation = "gi",
+        signature_help = "gk",
+        add_workspace_folder = "<leader>wa",
+        remove_workspace_folder = "<leader>wr",
+        list_workspace_folders = "<leader>wl",
+        type_definition = "<leader>D",
+        rename = "<leader>rn",
+        code_action = "<leader>ca",
+        references = "gr",
+        float_diagnostics = "ge",
+        goto_prev = "[d",
+        goto_next = "]d",
+        set_loclist = "<leader>q",
+        formatting = "<leader>fm",
+    },
+    nvimtree = {
+        toggle = {},
+        focus = {},
     },
 }
 

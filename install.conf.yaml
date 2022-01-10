@@ -13,6 +13,7 @@
     - ~/.config/git
     - ~/.config/nvim
     - ~/.config/nvim/lua/custom
+    - ~/.config/nvim/lua/custom/plugins
     - ~/opt
     - ~/opt/go
     - ~/opt/cargo
@@ -37,6 +38,7 @@
     ~/.config/nvim/.stylua.toml: stylua.toml
     ~/.config/nvim/lua/custom/chadrc.lua: config/nvim/lua/custom/chadrc.lua
     ~/.config/nvim/lua/custom/init.lua: config/nvim/lua/custom/init.lua
+    ~/.config/nvim/lua/custom/plugins/lspconfig.lua: config/nvim/lua/custom/plugins/lspconfig.lua
     ~/.exec_fish: exec_fish
     ~/.fdignore: gitignore
     ~/.functions: functions
@@ -51,7 +53,6 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
-    - ./install-deps
     - fish bin/sync.fisher
 
 - brewfile:
