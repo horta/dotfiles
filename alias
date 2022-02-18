@@ -17,3 +17,4 @@ alias lg="lazygit"
 
 alias d="bass source ~/bin/godir"
 alias f="bass source ~/bin/gofile"
+alias n="nnn -e"
